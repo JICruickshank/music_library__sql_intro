@@ -2,7 +2,8 @@ require("pg")
 
 class Album
 
-  attr_reader :title, :genre, :artist_id
+  attr_accessor :title, :genre
+  attr_reader :artist_id
 
   def initialize (options)
 
@@ -38,6 +39,14 @@ class Album
     values = [found_id]
     found_artist = SqlRunner.run(sql, values)[0]
     found_artist = Artist.new(found_artist)
+
+  end
+
+  def update
+
+    sql = "UPDATE album SET (title, genre) = ($1, $2) WHERE id = $3"
+    values = [@title, @genre, @id]
+    SqlRunner.run(sql, values)
 
   end
 
