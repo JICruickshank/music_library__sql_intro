@@ -29,4 +29,16 @@ class Album
 
   end
 
+  def self.artist(title)
+
+    sql = "SELECT artist_id FROM album WHERE title = $1"
+    values = [title]
+    found_id = SqlRunner.run(sql, values)[0]['artist_id'].to_i
+    sql = "SELECT * FROM artist WHERE id = $1"
+    values = [found_id]
+    found_artist = SqlRunner.run(sql, values)[0]
+    found_artist = Artist.new(found_artist)
+
+  end
+
 end

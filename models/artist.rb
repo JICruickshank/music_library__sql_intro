@@ -28,10 +28,16 @@ class Artist
 
   end
 
-  def sell.find(name)
+  def self.all_albums(name)
 
     sql = "SELECT id FROM artist WHERE name = $1"
     values = [name]
+    found_id = SqlRunner.run(sql, values)[0]['id'].to_i
+    sql = "SELECT * FROM album WHERE artist_id = $1"
+    values = [found_id]
+    albums = SqlRunner.run(sql, values)
+    albums_list = albums.map { |album| Album.new(album)}
+    return albums_list
 
   end
 

@@ -10,6 +10,8 @@ artist2 = Artist.new({'name' => "Naughty By Nature"})
 artist2.save
 album2 = Album.new({'title' => "Nineteen Naughty Three", 'genre' => "Hip-hop", 'artist_id' => artist2.id})
 album2.save
+album3 = Album.new({'title' => "Poverty's Paradise", 'genre' => "Hip-hop", 'artist_id' => artist2.id})
+album3.save
 
 
 binding.pry
