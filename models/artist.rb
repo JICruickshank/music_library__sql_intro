@@ -67,4 +67,9 @@ class Artist
 
   end
 
+  def self.delete_all()
+    sql = "DELETE FROM artists"
+    SqlRunner.run(sql)
+  end
+
 end
